@@ -22,7 +22,7 @@ jobs:
           echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;27.2.12479018"
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace -Porg.gradle.java.home="${JAVA_HOME}"
 
       - uses: actions/upload-artifact@v4
         with:
