@@ -21,6 +21,13 @@ jobs:
         run: |
           echo "y" | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "ndk;27.2.12479018"
 
+      - name: Remove hardcoded java.home from gradle.properties
+        run: |
+          if [ -f gradle.properties ]; then
+            sed -i '/org\.gradle\.java\.home/d' gradle.properties
+            echo "Removed org.gradle.java.home from gradle.properties"
+          fi
+
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
